@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GIPHY - Find GIFs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Roboto:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css" />
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit-icons.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="app" class="master-container">
+            <!-- SEARCH INPUT & BUTTON -->
+            <!-- ONLY BEFORE REQUEST -->
+            <div v-show="!requestDone" class="search-container" @keyup.enter="SearchGif()">
+                <div class="search-flex-container">
+                    <h1 class="main-title"> Looking for GIFs ?</h1>
+                    <div class="search-wrapper">
+                        <input class="search-input-lp" type="text" name="mess" v-model="query" placeholder="Theme (cats, meme, ...)">
+                        <button class="search-button-lp" @click="SearchGif()">Search</button>
+                    </div>
+                    <p class="see-trendings-p"> or see <button class="see-trendings-b" @click="GetTrendings()"> TRENDINGS </button></p>
+                </div>    
+                <div class="search-container-copyright">
+                    <p class="credits-p">All credits to <a href="https://giphy.com/" target="_blank">GIPHY</a> - Results provided by their <a href="https://developers.giphy.com/" target="_blank" rel="noopener noreferrer">API</a> 
+                    </p>
+                </div>
+            </div>
+            <!-- RESULTS DISPLAY - SI LA REQUEST EST FINIE -->
+            <main class="main-container">
+                <div v-if="requestDone">
+                    <div class="search-wrapper-af-request pad-top" @keyup.enter="SearchGif()">
+                        <div class="flex-search-wrapper">
+                            <input class="search-input" type="text" name="mess" v-model="query" placeholder="Theme (cats, meme, ...)">
+                            <!-- MOBILE ONLY -->
+                            <button class="search-button" @click="SearchGif()"><i class="fas fa-search"></i></button>
+                            <!-- LAPTOP/DESKTOP ONLY -->
+                            <button class="search-button-lapdesk" @click="SearchGif()">Search</button>
+                        </div>
+                    </div>
+                    <h4 class="search-result-title"> Search results for : <span class="search-result-message">{{ queryTitle }}</span> </h4>
+                    <div class="gif-result-container uk-grid-small uk-flex-center" uk-grid>                
+                        <div class="gif-element" v-for="res in resultSet">
+                            <!-- <img :src="res.images.fixed_width.url" alt="gif" class="gif-result" /> -->
+                            <img :src="res.images.fixed_width.url" alt="gif" class="gif-result" />
+                        </div>
+                    </div>
+                    <button class="load-more-b" @click="LoadMore()"> Load more </button>
+                </div>
+                <!-- SI LA REQUETE N'EST PAS ENVOYEE -->
+                <!-- <div class="loading" v-else>
+                    <p> No gif to show yet. </p>
+                </div> -->
+            </main>
+            <footer v-if="requestDone">
+                <p class="footer-credits"> GIF search powered by <a href="https://giphy.com/" target="_blank">GIPHY</a> and <a href="https://developers.giphy.com/" target="_blank" rel="noopener noreferrer">GIPHY API</a>  </p>
+                <p class="footer-copyright"> Copyright © 2019 - Neil Safraoui </p>
+            </footer>
+        </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
+
+<!-- OLD -->
+
+<!--  
+    <label for="mess">Request</label>
+-->
+
+<!-- <header>
+            <h1 class="main-title"><a href="index.html"> GIPHY - Find your favorites GIFs ! </a></h1>
+        </header> -->
