@@ -101,14 +101,14 @@ var vm = new Vue({
             
                 case 'search': 
                 // Search request : with query + key
-                this.finalRequest = "http://api.giphy.com/v1/gifs/search?q=" + self.query + "&api_key="+ key + "&limit=6";
+                this.finalRequest = "https://api.giphy.com/v1/gifs/search?q=" + self.query + "&api_key="+ key + "&limit=6";
                 request.open("GET", this.finalRequest , true); 
                     
                 break;
                     
                 case 'trendings':
                 // Get trendings : with key
-                this.finalRequest = "http://api.giphy.com/v1/gifs/trending?api_key="+ key + "&limit=6";
+                this.finalRequest = "https://api.giphy.com/v1/gifs/trending?api_key="+ key + "&limit=6";
                 request.open("GET", this.finalRequest , true);  
                            
                 break;     
