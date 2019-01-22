@@ -83,6 +83,7 @@ p, span, button, a, label, input {
     padding-left: 3%;
     margin-bottom: 3%;
     height: 40px;
+    color: #f5f5f5;
 }
 
 .search-input-lp:focus, .search-input:focus{
